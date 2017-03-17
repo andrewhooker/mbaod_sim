@@ -155,8 +155,6 @@ mbaod_simulate <- function(cohorts,
           design.db <- create_design_database(tot_design, tot_space, parameters, cohort)
           print("6")
           
-          
-
           #### optimize cohort ------------
           opt_output  <- do.call(optim_fun,
                                   c(poped.db=list(design.db),
