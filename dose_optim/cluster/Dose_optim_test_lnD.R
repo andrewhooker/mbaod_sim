@@ -29,8 +29,8 @@ source("stop_crit_dose2.R")
 source("mbaod_simulate.R")
 
 
-doses <- seq(0,500,0.5)
-doses[1] <- 0.0001
+doses <- seq(0,500,1)
+#doses[1] <- 0.0001
 
 a.space <- cell(2,1)
 a.space[,] <- list(doses)
@@ -65,10 +65,10 @@ step_1 = list(
                 settings.opt=list(
                   opt_xt=F,
                   opt_a=T,
-                  parallel=F,
-                  method=c("LS","ARS"), 
+                  parallel=T,
+                  #method=c("LS","ARS"), 
                   loop_methods=T,
-                  eff_crit = 1.0001,
+                  #eff_crit = 1.0001,
                   compute_inv=F,
                   iFIMCalculationType=0,
                   ofv_calc_type=4,
@@ -102,7 +102,7 @@ step_2$optimize$design_space$a_space <- a.space2
 
 results_mbaod_true <- mbaod_simulate(cohorts=list(step_1,step_2), # only the sim/est step in this case.
                                      ncohorts=50, # number of steps or cohorts in one AOD, if greater than number of included cohorts, last step is repeated
-                                     rep=100, #number of times to repeat the MBAOD simulation 
+                                     rep=1, #number of times to repeat the MBAOD simulation 
                                      name="PKPD_D_2in1g_misspec_odsc1", ED_only_FIM =F, 
                                      description="Ds optimality of dose", stop_crit_fun = stop_dose,
                                      seednr=123)
